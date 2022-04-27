@@ -9,13 +9,13 @@ export const database = [
         id: 1,
         messageText:
           "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour",
-        messageDate: "Apr 25, 11:01 PM",
+        messageDate: "Apr 25, 11:01:45 PM",
         own: false,
       },
       {
         id: 2,
         messageText: "I thought that the event was over long ago",
-        messageDate: "Apr 25, 11:02 PM",
+        messageDate: "Apr 25, 11:02:12 PM",
         own: true,
       },
     ],
@@ -31,7 +31,7 @@ export const database = [
         id: 1,
         messageText:
           "All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet",
-        messageDate: "Apr 26, 10:01 PM",
+        messageDate: "Apr 26, 10:01:12 PM",
         own: false,
       },
     ],
@@ -46,7 +46,7 @@ export const database = [
       {
         id: 1,
         messageText: "I believe they must have misplaced it elsewhere?!",
-        messageDate: "Apr 26, 11:01 PM",
+        messageDate: "Apr 26, 11:01:56 PM",
         own: false,
       },
     ],
@@ -61,7 +61,7 @@ export const database = [
       {
         id: 1,
         messageText: "Did you recieve the package I sent you the other day??",
-        messageDate: "Apr 24, 11:01 PM",
+        messageDate: "Apr 24, 11:01:45 PM",
       },
     ],
   },
@@ -74,19 +74,19 @@ export const database = [
       {
         id: 1,
         messageText: "Барак",
-        messageDate: "Apr 26, 11:01 PM",
+        messageDate: "Apr 26, 11:01:23 PM",
         own: true,
       },
       {
         id: 2,
         messageText: "Обама ?",
-        messageDate: "Apr 26, 11:01 PM",
+        messageDate: "Apr 26, 11:01:00 PM",
         own: false,
       },
       {
         id: 3,
         messageText: "Ну типа",
-        messageDate: "Apr 26, 11:02 PM",
+        messageDate: "Apr 26, 11:02:23 PM",
         own: true,
       },
     ],
@@ -102,7 +102,7 @@ export const database = [
         id: 1,
         messageText:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, aspernatur?",
-        messageDate: "Apr 23, 11:01 PM",
+        messageDate: "Apr 23, 11:01:11 PM",
       },
     ],
   },
