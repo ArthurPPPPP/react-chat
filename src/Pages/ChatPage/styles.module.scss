@@ -1,0 +1,28 @@
+.chatPage {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100%;
+  .chatList {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 30%;
+    height: 100%;
+  }
+  .chat {
+    display: flex;
+    flex-direction: column;
+    background-color: #fafafa;
+    width: 100%;
+    position: relative;
+  }
+}
+#chats {
+  color: rgb(10, 137, 255);
+  font-weight: 600;
+}

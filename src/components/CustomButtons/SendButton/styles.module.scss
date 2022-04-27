@@ -1,0 +1,15 @@
+.sendButton {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  img {
+    display: flex;
+    align-items: center;
+    width: 25px;
+  }
+}
