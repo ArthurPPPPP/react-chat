@@ -42,3 +42,8 @@
     }
   }
 }
+.chatItem:hover {
+  cursor: pointer;
+
+  transform: translateY(10px);
+}

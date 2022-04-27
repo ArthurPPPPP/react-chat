@@ -1,31 +1,45 @@
-.notification {
+.notificationClose {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px black;
   position: absolute;
-  width: 300px;
-  height: 150px;
-  background-color: rgb(255, 255, 255);
-  border: solid 1px gray;
-  z-index: 5;
-  border-bottom-right-radius: 50px;
-  border-bottom-left-radius: 50px;
-  left: 50%;
-  transform: translate(-50%);
-  top: -50%; /*Put it on the very top*/
-  transition: all 0.5s ease-in-out; /*make it smooth*/
-  visibility: hidden;
+  width: 100vw;
+  height: 100ch;
+  z-index: 10;
   opacity: 0;
+  transition: 0.5s;
+  pointer-events: none;
 }
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  height: 140px;
+  border: solid 3px rgb(104, 81, 81);
+  border-radius: 50px;
+  background-color: white;
+}
+
 .notificationActive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px black;
   position: absolute;
-  width: 300px;
-  height: 150px;
-  background-color: rgb(255, 255, 255);
-  border: solid 1px gray;
-  z-index: 5;
-  border-bottom-right-radius: 50px;
-  border-bottom-left-radius: 50px;
-  left: 50%;
-  transform: translate(-50%);
-  visibility: visible;
+  width: 100vw;
+  height: 100ch;
+  z-index: 10;
   opacity: 1;
-  top: 50%;
+  pointer-events: all;
+}
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 270px;
+  height: 140px;
+  border: solid 2px rgb(133, 113, 113);
+  border-radius: 50px;
 }

@@ -12,10 +12,10 @@ import { AllChats } from "../../components/AllChats/AllChats";
 import { Context } from "../..";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Notification } from "../../components/Notification/Notification";
+import { Loader } from "../../components/Loader/Loader";
 
 export const ChatPage = () => {
   const [data, setData] = useState(database);
-  const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
   const [index, setIndex] = useState(0);
   const [inputValue, setInputValue] = useState("");
@@ -23,7 +23,6 @@ export const ChatPage = () => {
   const [active, setActive] = useState(false);
 
   const { auth } = useContext(Context);
-
   const [user] = useAuthState(auth);
 
   useEffect(() => {
@@ -40,20 +39,19 @@ export const ChatPage = () => {
     a[index].message = m;
     setData(a);
   };
-  useEffect(() => {
-    if (message && data[index].online) {
-      const timer = setTimeout(() => {
-        createMessage(message, false);
-      }, 10000);
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [message]);
-  const getMessage = async () => {
+
+  const loadResponseMessage = async () => {
     try {
-      const data = await loadMessage();
-      setMessage(data.value);
+      const message = await loadMessage();
+      if (data[index].online) {
+        const timer = setTimeout(() => {
+          createMessage(message.value, false);
+          setActive(true);
+        }, 10000);
+        return () => {
+          clearTimeout(timer);
+        };
+      }
     } catch (err) {
       setError(err);
     }
@@ -73,6 +71,7 @@ export const ChatPage = () => {
         day: "numeric",
         hour: "2-digit",
         minute: "2-digit",
+        second: "2-digit",
       }),
       own: own,
     };
@@ -93,11 +92,10 @@ export const ChatPage = () => {
     const value = e.target[0].value;
     if (value) {
       createMessage(value, true);
-      getMessage();
+      loadResponseMessage();
       setIndex(0);
     }
     setInputValue("");
-    setActive(true);
   };
   const onChangeHandle = (e) => {
     setInputValue(e.target.value);
@@ -105,43 +103,56 @@ export const ChatPage = () => {
   const onSearchHandle = (e) => {
     setSearchValue(e.target.value);
   };
+
+  const closeNotification = () => {
+    setActive(false);
+  };
+
   const sortedArray = sorteArray();
   const messages = sortedArray[index].messages;
 
   return (
-    <div className={styles.chatPage}>
-      <Notification active={active} />
-      <Split
-        direction="horizontal"
-        sizes={[25, 75]}
-        className={styles.container}
-        cursor="col-resize"
-        gutterSize={3}
-      >
-        <div className={styles.chatList}>
-          <ChatListHeader
-            onChangeHandle={onSearchHandle}
-            inputValue={searcValue}
-            user={user}
-          />
-          <h1 id={styles.chats}>Chats</h1>
-          <AllChats
-            data={data}
-            onClickHandle={onClickChat}
-            inputValue={searcValue}
-          />
+    <>
+      {user ? (
+        <div className={styles.chatPage}>
+          <Notification active={active} onClickHandle={closeNotification} />
+          <Split
+            direction="horizontal"
+            sizes={[25, 75]}
+            className={styles.container}
+            cursor="col-resize"
+            gutterSize={3}
+          >
+            <div className={styles.chatList}>
+              <ChatListHeader
+                onChangeHandle={onSearchHandle}
+                inputValue={searcValue}
+                user={user}
+              />
+              <h1 id={styles.chats}>Chats</h1>
+              <AllChats
+                data={data}
+                onClickHandle={onClickChat}
+                inputValue={searcValue}
+              />
+            </div>
+            <div className={styles.chat}>
+              <ChatHeader data={data[index]} />
+              <Chat chatData={messages} avatar={data[index].avatarURL} />
+              <ChatFooter
+                submitHandler={submitHandler}
+                onChangeHandle={onChangeHandle}
+                inputValue={inputValue}
+              />
+            </div>
+          </Split>
+          <Footer />
         </div>
-        <div className={styles.chat}>
-          <ChatHeader data={data[index]} />
-          <Chat chatData={messages} avatar={data[index].avatarURL} />
-          <ChatFooter
-            submitHandler={submitHandler}
-            onChangeHandle={onChangeHandle}
-            inputValue={inputValue}
-          />
-        </div>
-      </Split>
-      <Footer />
-    </div>
+      ) : (
+        <h1>
+          <Loader />
+        </h1>
+      )}
+    </>
   );
 };
